@@ -1,0 +1,132 @@
+.app-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: calc(100vh - 70px);
+  overflow: hidden;
+  .json-header-link {
+    position: absolute;
+    top: 20px;
+    left: 100px;
+  }
+
+  .leftImgBox {
+    width: 200px;
+    height: calc(100vh - 70px);
+    overflow: auto;
+  }
+
+  .nav-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f5f7fa;
+    border-bottom: 1px solid #ebeef5;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-height: calc(100vh - 100px);
+    padding: 20px;
+    overflow-y: auto;
+
+    .tree-box {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 10px;
+
+      .tree-item {
+        margin-bottom: 20px;
+
+        h5 {
+          font-size: 16px;
+          font-weight: bold;
+          margin-bottom: 20px;
+          color: #333;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .text-list {
+          padding: 10px;
+          border: 1px solid #ebeef5;
+          border-radius: 8px;
+          background-color: #f9f9f9;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          margin-bottom: 20px;
+          .text-item {
+            margin-bottom: 10px;
+          }
+        }
+
+        .img-list {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+
+          .img-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 10px;
+            border: 1px solid #ebeef5;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+            .image {
+              width: 200px;
+              height: 200px;
+              border-radius: 8px;
+              overflow: hidden;
+              border: 1px solid #dcdfe6;
+            }
+            .autio {
+              width: 300px;
+              height: 100px;
+            }
+
+            .description {
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+
+              .tag {
+                font-size: 14px;
+                color: #333;
+              }
+
+              .desp {
+                font-size: 14px;
+                color: #606266;
+                line-height: 1.5;
+              }
+
+              .el-checkbox {
+                margin-top: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .btn-group {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      position: fixed;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      .el-button {
+        min-width: 100px;
+      }
+    }
+  }
+}

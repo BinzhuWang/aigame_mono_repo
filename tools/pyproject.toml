@@ -1,0 +1,64 @@
+[project]
+name = "tools"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "dfine", email = "coding@dfine.tech" }
+]
+dependencies = [
+    "fastapi[standard]>=0.115.12",
+    "python-pptx>=1.0.2",
+    "openai>=1.69.0",
+    "pillow>=11.1.0",
+    "aiofiles>=24.1.0",
+    "faster-whisper>=1.1.1",
+    "pymupdf>=1.25.5",
+    "tqdm>=4.67.1",
+    "pyjwt>=2.10.1",
+    "isort>=6.0.1",
+    "faststream[rabbitmq]>=0.5.40",
+    "aio-pika>=9.5.5",
+    "pydantic-ai-slim[mcp,openai,anthropic]>=0.0.55",
+    "tenacity>=9.1.2",
+    "typer>=0.15.3",
+    "loguru>=0.7.3",
+    "pydub>=0.25.1",
+    "pydub-stubs>=0.25.1.6",
+    "edge-tts>=7.0.2",
+    "runwayml>=3.1.0",
+    "tiktoken>=0.9.0",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+license = { text = "MIT" }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "pytest>=8.3.5",
+    "pytest-asyncio>=0.26.0",
+]
+virtual = true
+
+[tool.rye.scripts]
+app = "uvicorn src.tools.main:app"
+mq = "faststream run src.tools.consumer:app"
+sort = "isort ."
+cli_help = "python scripts/create_code_cli.py --help"
+cli = "python scripts/create_code_cli.py --update-id=4 https://api.gamecreator.online/data/download/game/b02a5d68-9918-4d71-8445-ad3735644007/plan.json"
+audio_lib = "python scripts/generate_audio_assets.py"
+
+
+[[tool.rye.sources]]
+name = "default"
+url = "https://mirrors.aliyun.com/pypi/simple"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tools"]

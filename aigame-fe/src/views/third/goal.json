@@ -1,0 +1,120 @@
+{
+  "modules": [
+    {
+      "module_id": 0,
+      "start_page": 2,
+      "end_page": 10,
+      "game_goal": "Interactive warm-up game with soccer-themed physical activities to engage students in mimicking actions such as kicking, jumping, hopping, catching, throwing, skipping, running, and climbing.",
+      "evidence": [
+        {
+          "page": 2,
+          "text_excerpt": "Warm up, warm up, everybody warm up. There are 8 soccer balls. Click to have one ball bounce in...",
+          "image_summary": "A stylized representation of a soccer field focusing on the goal area."
+        },
+        {
+          "page": 3,
+          "text_excerpt": "Can you kick like her? Kick four times.",
+          "image_summary": "Illustration of a martial artist performing a flying kick."
+        },
+        {
+          "page": 4,
+          "text_excerpt": "Can you jump like him? Jump over six tyres.",
+          "image_summary": "Illustration of a young boy jumping over tires."
+        },
+        {
+          "page": 5,
+          "text_excerpt": "Can you hop like her? Hop fives times.",
+          "image_summary": "Cartoon-style illustration of a young girl in a playful pose."
+        },
+        {
+          "page": 6,
+          "text_excerpt": "Can you catch like him? Catch a ball three times.",
+          "image_summary": "Illustration of a boy in a catching stance with a ball in the mid-air."
+        },
+        {
+          "page": 7,
+          "text_excerpt": "Can you throw like him? Throw the ball twice.",
+          "image_summary": "Illustration of a young boy engaged in playing cricket."
+        },
+        {
+          "page": 8,
+          "text_excerpt": "Can you skip like him? Skip eight times.",
+          "image_summary": "Illustration of a boy jumping rope."
+        },
+        {
+          "page": 9,
+          "text_excerpt": "Can you run like her? Run on the spot for 10 counts.",
+          "image_summary": "Illustration of a young girl in a running motion."
+        },
+        {
+          "page": 10,
+          "text_excerpt": "Can you climb like her? Climb up one rock.",
+          "image_summary": "Illustration of a child climbing viewed from behind."
+        }
+      ]
+    },
+    {
+      "module_id": 1,
+      "start_page": 11,
+      "end_page": 21,
+      "game_goal": "Follow the leader game where learners touch named body parts and complete specific physical actions as instructed.",
+      "evidence": [
+        {
+          "page": 11,
+          "text_excerpt": "The learners take turns choosing a number around the body. Click on the number chosen to be directed to a slide with an action.",
+          "image_summary": ""
+        },
+        {
+          "page": 12,
+          "text_excerpt": "Follow the leader. The learners need to figure out what they must touch...",
+          "image_summary": ""
+        },
+        {
+          "page": 13,
+          "text_excerpt": "The learners need to figure out what they must touch. Read the added instruction to them.",
+          "image_summary": "Illustration of body parts labeled on a cartoon boy."
+        },
+        {
+          "page": 14,
+          "text_excerpt": "The learners need to figure out what they must touch. Read the added instruction to them...",
+          "image_summary": "Labeled boxes with illustrations of body parts connected to the corresponding parts on the boy."
+        },
+        {
+          "page": 15,
+          "text_excerpt": "Hold it and walk around in a circle.",
+          "image_summary": "Educational illustration with labeled boxes of body parts connected to a cartoon boy."
+        },
+        {
+          "page": 16,
+          "text_excerpt": "And criss cross your legs four times.",
+          "image_summary": "Cartoon boy with labeled boxes identifying body parts."
+        },
+        {
+          "page": 17,
+          "text_excerpt": "And do seven jumping jacks.",
+          "image_summary": "Cartoon boy with labeled boxes of body parts."
+        },
+        {
+          "page": 18,
+          "text_excerpt": "And touch your toes, then put your hands on your hips.",
+          "image_summary": "Cartoon boy with labeled boxes identifying body parts."
+        },
+        {
+          "page": 19,
+          "text_excerpt": "And stick out your tongue, then bend to your left side.",
+          "image_summary": "Cartoon boy with labeled boxes of body parts."
+        },
+        {
+          "page": 20,
+          "text_excerpt": "And nod your head twice, then sit back down.",
+          "image_summary": "Cartoon boy with labeled boxes identifying body parts."
+        },
+        {
+          "page": 21,
+          "text_excerpt": "And touch your shoulders, then do a little dance.",
+          "image_summary": "Cartoon boy with labeled boxes identifying body parts."
+        }
+      ]
+    }
+  ]
+}

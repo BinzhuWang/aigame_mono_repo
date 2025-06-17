@@ -1,0 +1,147 @@
+services:
+  aigame-backend:
+    build:
+      context: aigame-backend
+      dockerfile: Dockerfile
+    environment: 
+      API_LOG: "info"
+      RUST_BACKTRACE: 1
+      HOST_URL: https://api.gamecreator.online
+      JWT_SECRET: aigame
+      JWT_EXPIRATION_TIME: 3600
+      ADMIN_USER: admin
+      ADMIN_PASSWORD: aigame-25
+      RABBITMQ_USERNAME: aigame
+      RABBITMQ_PASSWORD: aigame-25
+    volumes:
+      - ./log/backend:/logs
+      - /etc/localtime:/etc/localtime:ro
+      - ./data/aigame:/data
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      aigame-mysql:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+  aigame-tools:
+    build:
+      context: tools
+      dockerfile: Dockerfile
+    environment: 
+      ADMIN_USER: admin
+      ADMIN_PASSWORD: aigame-25
+      RABBITMQ_USERNAME: aigame
+      RABBITMQ_PASSWORD: aigame-25
+      RABBITMQ_MAX_CONSUMER: 1
+      RABBITMQ_URI: amqp://aigame:aigame-25@rabbitmq:5672/
+      BASE_MODEL: claude-3-7-sonnet-20250219-thinking
+      BASE_MODEL: claude-sonnet-4-20250514
+      TAG_MODEL: gpt-4o
+      GOAL_MODEL: claude-sonnet-4-20250514
+      PLAN_MODEL: gpt-4o
+      LLM_MAX_TOKEN: 64000
+      OPENAI_BASE_URL: https://api3.xhub.chat/v1
+      OPENAI_API_KEY: 
+      MS_TTS_KEY: 
+      MS_TTS_REGION: eastasia
+      FAL_API_KEY: 
+      RUNWAY_API_KEY: 
+    volumes:
+      - ./log/tools:/app/logs
+      - /etc/localtime:/etc/localtime:ro
+      - ./data/aigame:/data
+    ports:
+      - "8000:80"
+    restart: always
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      documentserver:
+        condition: service_healthy
+      aigame-backend:
+        condition: service_started
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+  aigame-mysql:
+    image: mysql:8.0
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data/mysql:/var/lib/mysql
+      - ./conf/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+    ports:
+      - "6306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: aigame-25 
+      MYSQL_DATABASE: aigame 
+      MYSQL_USER: creator 
+      MYSQL_PASSWORD: creator-25
+      LANG: C.UTF-8
+    healthcheck:
+      test: ["CMD", "mysqladmin", "-uroot", "-prootpass", "ping", "-h", "localhost"]
+      interval: 10s  
+      timeout: 5s     
+      retries: 3      
+      start_period: 10s  
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+  rabbitmq:
+    build: 
+      context: rabbitmq
+      dockerfile: Dockerfile
+    environment:
+        - RABBITMQ_DEFAULT_PASS=aigame-25
+        - RABBITMQ_DEFAULT_USER=aigame
+        - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbit consumer_timeout 7200000
+    ports:
+        - '5672:5672'
+        - '5552:5552'
+        - '15672:15672'
+    volumes:
+        - './data/rabbitmq:/var/lib/rabbitmq'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+  documentserver:
+    image: onlyoffice/documentserver
+    volumes:
+        - './data/onlyoffice/DocumentServer/data:/var/www/onlyoffice/Data'
+        - './data/onlyoffice/DocumentServer/logs:/var/log/onlyoffice'
+    ports:
+        - '3380:80'
+    environment:
+      - JWT_SECRET=aigame
+    tty: true
+    stdin_open: true       
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost/healthcheck"]
+      interval: 30s
+      retries: 3
+      start_period: 40s
+      timeout: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
